@@ -1,6 +1,15 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Kanban.Models;
+
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+
+builder.Services.AddDbContext<KanbanDBContext>(options =>
+  options.UseSqlServer(builder.Configuration.GetConnectionString("db")));
 
 builder.Services.AddControllersWithViews();
 
